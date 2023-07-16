@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="notice-create">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input name="files" type="file" multiple />
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+{% endblock %}

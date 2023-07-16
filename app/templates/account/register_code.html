@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+  Code
+{% endblock %}
+{% block content %}
+  <h1>Hi, {{ user }}!</h1>
+  <p>Code was send on your email</p>
+  <form action="." method="post">
+    <p>
+      <input type="text" name="Activate" />
+    </p>
+    {% csrf_token %}
+    <p>
+      <input type="submit" value="Activate" />
+    </p>
+  </form>
+{% endblock %}

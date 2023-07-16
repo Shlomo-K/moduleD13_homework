@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Объявления:</h1>
+  <div class="notice">
+    {% for Notice in Notice %}
+      <div class="notice-item">
+        <a href="{{ Notice.id }}"><h1>{{ Notice.Notice_title }}</h1></a>
+        <p>{{ Notice.Notice_text|linebreaksbr }}</p>
+        <p>{{ Notice.Creation_date }}</p>
+        <hr style="width:75%;text-align:left;margin-left:0" />
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

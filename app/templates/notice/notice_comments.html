@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="notice_detail">
+    <h2>{{Notice.Notice_title}}</h2>
+    <h4>{{Notice.Notice_text}}</h4>
+    <p>{{Notice.Creation_date}}</p>
+    <h1>Comments to add</h1>
+</div>
+<hr>
+
+<div class="comments">
+{% if Comments%}
+    
+    <form method="GET">
+        {{ myfilter.form }}
+        <input type="submit" value="Найти">
+    </form>
+
+    {% for post in myfilter.qs %}
+
+        <form method="post">{% csrf_token %}
+        
+            {% if AllComments %}
+                <div class="notice_detail">
+                    <h2>{{post.Notice.Notice_title}}</h2>
+                    <h4>{{post.Notice.Notice_text}}</h4>
+                    <p> {{post.Notice.Creation_date}}</p>
+                </div>
+            {% endif %}
+            <div>
+                <p>
+                    {{post.Comment}} 
+                    <br>
+                    {{post.Comment_date}}
+                </p>
+                <button name = "Accept" value={{post.id}}>Accept</button>
+                <button name = "Denied" value={{post.id}}>Denied</button>
+            </div>
+        </form>
+
+    {% endfor %}
+    
+{% else %}
+    <h2>No comments</h2>
+{% endif %}
+</div>
+
+{% endblock %}

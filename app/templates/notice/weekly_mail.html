@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly mail</title>
+  </head>
+  <body>
+    <h1>Hello, {{ userName }}!</h1>
+    <p>Here your weekly posts</p>
+    {% for post in postInfo %}
+      <div class="weekly_post">
+        <a href="http://127.0.0.1:8000/announce/{{ post.postUrl }}"><h2>{{ post.title }}</h2></a>
+        <h4>Автор {{ post.author }}</h4>
+        <br>
+        <p>{{ post.date|date:'d M Y' }}</p>
+      </div>
+    {% endfor %}
+  </body>
+</html>

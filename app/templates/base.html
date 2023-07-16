@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <meta charset="utf-8" />
+    <title>
+      {% block title %}
+        Сайт одной MMORPG
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <header>
+      <a href="/">Домой</a>
+      <a href="/notice">Объявления</a>
+      <a href="/comments">Комментарии</a>
+      <a href="/notice_create">Создать объявление</a>
+
+      <p>
+        {% if user.is_authenticated %}
+          Привет, {{ user }}
+        {% else %}
+          Привет, Аноним
+        {% endif %}
+      </p>
+    </header>
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </body>
+</html>

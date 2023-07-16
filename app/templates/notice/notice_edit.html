@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% for formField in form%}
+        {% if formField.name != "Notice_author" %}
+            <div>
+            {{ formField.name }} {{formField}}
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% if Notice_files %}
+        {% for file in Notice_files %}
+            <div>
+                <p>
+                {% if "img" == file.File_type %}
+                    <img width="320" height = "240" src="{{ MEDIA_URL }}{{file.Name}}" alt="img">
+                {% else %}
+                    <video controls="controls" width="320" height="240" preload="preload"> 
+                        <source src="{{ MEDIA_URL }}{{file.Name}}" type="video/mp4"></source>
+                    </video> 
+                {% endif %}
+                <button name = "Delete" value={{file.id}}> Delete </button>
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <label>Upload image</label>
+    <input name = "files" type="file" multiple> 
+    <br>
+    <button>Update</button>
+</form>
+{% endblock %}

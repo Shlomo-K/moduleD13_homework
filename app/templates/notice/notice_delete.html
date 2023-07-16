@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+   
+{% block title %}
+Delete notice
+{% endblock title %}
+
+{% block content %}
+
+<h1>Удаление поста</h1>
+
+<form method="POST">
+    {% csrf_token %} 
+    {{ form }}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input onclick="return check()"; type="submit" value="Удалить пост">
+</form>
+
+<script>
+    function check() {
+        return confirm("Подтвердить")
+    }
+</script>
+
+{% endblock content %}
